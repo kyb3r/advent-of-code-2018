@@ -3,7 +3,7 @@ import itertools
 from aocd import data
 from utils import timed
 
-input = [int(i) for i in data.split('\n')]
+input = [int(i) for i in data.split()]
 
 @timed
 def part_one(deltas):

@@ -11,6 +11,6 @@ def timed(f):
         start = time.monotonic()
         result = f(*args, **kwargs)
         end = time.monotonic()
-        print(f'{f.__name__} - elapsed time: {end-start:.5f} seconds')
+        print(f'{f.__name__} - time taken: {end-start:.5f} seconds')
         return result
     return wrapper
