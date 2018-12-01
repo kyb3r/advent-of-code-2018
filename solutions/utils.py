@@ -2,6 +2,10 @@ from functools import wraps
 import time
 
 def timed(f):
+    """
+    Simple utility decorator which prints out 
+    the execution time of the wrapped function.
+    """
     @wraps(f)
     def wrapper(*args, **kwargs):
         start = time.monotonic()
