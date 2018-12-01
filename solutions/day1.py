@@ -11,9 +11,9 @@ def part_one(deltas):
 
 @timed
 def part_two(deltas):
-    seen = set()
     frequency = 0
-    for delta in itertools.cycle(deltas):
+    seen = {frequency} # 0 may be repeated
+    for delta in itert0ools.cycle(deltas):
         frequency += delta
         if frequency in seen:
             return frequency
