@@ -13,7 +13,7 @@ def part_one(deltas):
 def part_two(deltas):
     frequency = 0
     seen = {frequency} # 0 may be repeated
-    for delta in itert0ools.cycle(deltas):
+    for delta in itertools.cycle(deltas):
         frequency += delta
         if frequency in seen:
             return frequency
