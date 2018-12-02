@@ -13,6 +13,15 @@ def part_one(boxes):
     checksum = twice * thrice 
     return checksum
 
+
+@timed
+def part_one(boxes):
+    """Shorter version, but harder to understand"""
+    return (
+        sum(any(box.count(x) == 2 for x in box) for box in boxes) 
+        * sum(any(box.count(x) == 3 for x in box) for box in boxes)
+    )
+
 @timed
 def part_two(boxes):
     for x in boxes:
