@@ -1,6 +1,8 @@
-from aocd import data
-from utils import timed
 import itertools
+from utils import timed
+
+from aocd import data
+
 
 input = data.split()
 
@@ -13,7 +15,6 @@ def part_one(boxes):
         thrice += any(box.count(letter) == 3 for letter in box)
     checksum = twice * thrice 
     return checksum
-
 
 @timed
 def part_one(boxes):
