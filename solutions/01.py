@@ -12,7 +12,7 @@ def part_one(deltas):
 @timed
 def part_two(deltas):
     frequency = 0
-    seen = set([frequency]) # 0 can be repeated
+    seen = {frequency} # 0 can be repeated
     for delta in itertools.cycle(deltas):
         frequency += delta
         if frequency in seen:
