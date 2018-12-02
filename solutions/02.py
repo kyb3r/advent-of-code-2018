@@ -8,8 +8,8 @@ def part_one(boxes):
     twice = 0
     thrice = 0
     for box in boxes:
-        twice += any(box.count(x) == 2 for x in box)
-        thrice += any(box.count(x) == 3 for x in box)
+        twice += any(box.count(letter) == 2 for letter in box)
+        thrice += any(box.count(letter) == 3 for letter in box)
     checksum = twice * thrice 
     return checksum
 
@@ -17,7 +17,7 @@ def part_one(boxes):
 @timed
 def part_one(boxes):
     """Shorter version, but harder to understand"""
-    f = lambda c: sum(any(b.count(x) == c for x in b) for b in boxes) 
+    f = lambda c: sum(any(b.count(l) == c for l in b) for b in boxes) 
     return f(2) * f(3)
 
 @timed
