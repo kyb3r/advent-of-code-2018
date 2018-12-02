@@ -17,10 +17,8 @@ def part_one(boxes):
 @timed
 def part_one(boxes):
     """Shorter version, but harder to understand"""
-    return (
-        sum(any(box.count(x) == 2 for x in box) for box in boxes) 
-        * sum(any(box.count(x) == 3 for x in box) for box in boxes)
-    )
+    f = lambda c: sum(any(b.count(x) == c for x in b) for b in boxes) 
+    return f(2) * f(3)
 
 @timed
 def part_two(boxes):
