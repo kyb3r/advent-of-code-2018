@@ -1,5 +1,6 @@
 from aocd import data
 from utils import timed
+import itertools
 
 input = data.split()
 
@@ -22,12 +23,11 @@ def part_one(boxes):
 
 @timed
 def part_two(boxes):
-    for x in boxes:
-        for y in boxes:
-            difference = [i for i, l in enumerate(x) if y[i] != l]
-            if len(difference) == 1:
-                index = difference[0]
-                return x[:index] + x[index+1:]
+    for x, y in itertools.combinations(boxes, 2):
+        difference = [i for i, l in enumerate(x) if y[i] != l]
+        if len(difference) == 1:
+            index = difference[0]
+            return x[:index] + x[index+1:]
 
 print(part_one(input))
 print(part_two(input))
