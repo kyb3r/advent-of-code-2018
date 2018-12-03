@@ -1,15 +1,13 @@
-import itertools
 from utils import timed
+import itertools
 
 from aocd import data
-
 
 input = data.split()
 
 @timed
 def part_one(boxes):
-    twice = 0
-    thrice = 0
+    twice = thrice = 0
     for box in boxes:
         twice += any(box.count(letter) == 2 for letter in box)
         thrice += any(box.count(letter) == 3 for letter in box)
