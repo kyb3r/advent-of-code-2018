@@ -20,7 +20,7 @@ class Claim:
         return self.width * self.height
 
 
-claims = map(lambda s: Claim(*map(int, re.findall(r'-?\d+', s))), data.split('\n'))
+claims = map(lambda s: Claim(*map(int, re.findall(r'\d+', s))), data.split('\n'))
 grid = defaultdict(set)
 
 def part_one(claims):
@@ -37,7 +37,7 @@ def part_two(grid):
         if len(claims) == 1:
             sol = claims.pop()
             possible[sol] += 1 # could be part of a larger claim that is actually already intersected
-    return [k for k, v in possible.items() if k.area == v][0].id
+    return next(k for k, v in possible.items() if k.area == v).id
 
 print(part_one(claims))
 print(part_two(grid))
