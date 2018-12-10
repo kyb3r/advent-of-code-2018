@@ -1,5 +1,6 @@
 from aocd import data
 from dataclasses import dataclass, field
+from utils import timed
 
 @dataclass
 class Node:
@@ -7,14 +8,14 @@ class Node:
     metadata: list = None
 
     @classmethod
-    def create(cls, data):
+    def from_data(cls, data):
         node = cls()
 
         num_children = data.pop(0)
         num_metadata = data.pop(0)
 
         for x in range(num_children):
-            child = cls.create(data)
+            child = cls.from_data(data)
             node.children.append(child)
 
         node.metadata = [data.pop(0) for x in range(num_metadata)]
@@ -35,8 +36,8 @@ class Node:
         return sum(self.metadata) + sum(c.metasum for c in self.children)
 
 
-data = [int(i) for i in data.split()]
-root = Node.create(data)
+input = [int(i) for i in data.split()]
+root = Node.from_data(input)
 
 print(root.metasum)
 print(root.value)
