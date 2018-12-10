@@ -31,7 +31,8 @@ class Step:
     def __hash__(self):
         return hash(self.letter)
 
-def next_ready_step(steps):
+def next_ready(steps):
+    """Finds the next ready step from a list of steps"""
     ready = filter(lambda s: s.ready, steps)
     ret = sorted(ready, key=str) # sort alphabetically
     if ret:
@@ -42,7 +43,7 @@ def next_ready_step(steps):
 def part_one(steps):
     order = ''
     while steps:
-        next = next_ready_step(steps)
+        next = next_ready(steps)
         order += str(next)
         next.completed = True
     return order
@@ -75,7 +76,7 @@ def part_two(all_steps, workers=5):
     while not all(j.completed for j in jobs):
         time += 1
         for elf in workers:
-            elf.job = elf.job or next_ready_step(all_steps)
+            elf.job = elf.job or next_ready(all_steps)
         [elf.work() for elf in workers if elf.job]
         
     return time
