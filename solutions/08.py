@@ -1,5 +1,6 @@
 from aocd import data
 from dataclasses import dataclass, field
+from collections import deque
 from utils import timed
 
 @dataclass
@@ -8,17 +9,17 @@ class Node:
     metadata: list = None
 
     @classmethod
-    def from_data(cls, data):
+    def from_data(cls, data: deque):
         node = cls()
 
-        num_children = data.pop(0)
-        num_metadata = data.pop(0)
+        num_children = data.popleft()
+        num_metadata = data.popleft()
 
-        for x in range(num_children):
+        for _ in range(num_children):
             child = cls.from_data(data)
             node.children.append(child)
 
-        node.metadata = [data.pop(0) for x in range(num_metadata)]
+        node.metadata = [data.popleft() for _ in range(num_metadata)]
         return node
     
     @property
@@ -36,7 +37,7 @@ class Node:
         return sum(self.metadata) + sum(c.metasum for c in self.children)
 
 
-input = [int(i) for i in data.split()]
+input = deque(int(i) for i in data.split())
 root = Node.from_data(input)
 
 print(root.metasum)
