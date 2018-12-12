@@ -18,8 +18,9 @@ def timed(f):
 def memoized(callable):
     callable.cache = cache = {}
     @functools.wraps(callable)
-    def wrapper(arg):
-        if arg not in cache:
-            cache[arg] = callable(arg)
-        return cache[arg]
+    def wrapper(*args, **kwargs):
+        key = str(args) + str(kwargs)
+        if key not in cache:
+            cache[key] = callable(*args, **kwargs)
+        return cache[key]
     return wrapper
